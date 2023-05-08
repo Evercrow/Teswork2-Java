@@ -2,7 +2,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.PriorityQueue;
 
-public class ParticipantQueue implements Iterator<Participant> {
+public class ParticipantQueue implements Iterable<Participant> {
     PriorityQueue<Participant> drawQueue;
 
 
@@ -10,14 +10,27 @@ public class ParticipantQueue implements Iterator<Participant> {
             this.drawQueue = new PriorityQueue<>(list.size());
             this.drawQueue.addAll(list);
     }
+    class ParticipantIterator implements Iterator<Participant>{
+        Participant current;
+        public ParticipantIterator(PriorityQueue<Participant> participants) {
+            this.current = participants.peek();
+        }
 
-    @Override
-    public boolean hasNext() {
-        return !drawQueue.isEmpty();
+        @Override
+        public boolean hasNext() {
+            return !drawQueue.isEmpty();
+        }
+
+        @Override
+        public Participant next() {
+            return drawQueue.poll();
+        }
     }
 
+
     @Override
-    public Participant next() {
-        return drawQueue.remove();
+    public Iterator<Participant> iterator() {
+        return new ParticipantIterator(drawQueue);
     }
+
 }

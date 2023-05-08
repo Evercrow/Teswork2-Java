@@ -1,6 +1,6 @@
 /**
  * Класс, призванный хранить информацию об игрушке. Сравнивается по весу,
- * имеет скрытый показатель относительного шанса в текущем розыгрыше
+ * имеет скрытый показатель относительного шанса в текущем розыгрыше, по которому сравниваются игрушки в очереди
  * Обязательные аргументы конструкторов:
  * chanceWeight - вес вероятности, может быть вещественным числом
  * поле name - наименование игрушки
@@ -8,7 +8,7 @@
  * id - по умолчанию присваивается id, равный общему числу уникальных игрушек-1
  * quantity - количество, по умолчанию ставится -1, отрицательные числа показывают, что игрушка не может закончиться
  */
-public class Toy {
+public class Toy implements Comparable<Toy>{
     int id;
     static int idCount;
     double chanceWeight;
@@ -47,5 +47,13 @@ public class Toy {
 
     public void setChance(float chance) {
         this.chance = chance;
+    }
+
+    @Override
+    public int compareTo(Toy o) {
+        if(o.chance == this.chance){
+            return 0;
+        }
+        return this.chance < o.chance ? -1 : 1;
     }
 }
