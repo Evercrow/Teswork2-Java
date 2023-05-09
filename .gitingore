@@ -95,4 +95,5 @@ buildNumber.properties
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
-./raffle_winners.txt
+raffle_winners.txt
+toys_after.txt
