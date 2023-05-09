@@ -109,9 +109,8 @@ public class Raffle {
             return currentQueue;
         }
 
-        ToyList removeStock(int idNum, ToyList toys) {
+        void removeStock(int idNum, ToyList toys) {
             toys.removeToy(idNum);
-            return toys;
         }
 
 
