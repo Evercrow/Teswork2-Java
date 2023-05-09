@@ -3,9 +3,9 @@ import java.util.Collections;
 import java.util.HashMap;
 
 /**
- * Класс, призванный собирать объекты игрушек Toy из разных источников в один Hashmap для быстрого доступа.
- * Чтобы избежать дублирования максимума, переделывает индексы на max(key)++ у тех игрушек, что добавляются вручную.
- * (контроль актуальных id на совести скармливающего данные)
+ * Класс, призванный собирать объекты игрушек Toy из разных источников в один Hashmap вида <id игрушки,объект игрушки> для быстрого доступа.
+ * Чтобы избежать дублирования, переделывает индексы на max(key)++ у тех игрушек, что добавляются вручную.
+ * (контроль актуальных id в текстовом файле на совести скармливающего данные)
  */
 public class ToyList {
     HashMap<Integer,Toy> toys = new HashMap<>();
@@ -28,11 +28,20 @@ public class ToyList {
             this.addToy(t);
         }
     }
-    void addToy(Toy t){
+
+    /**
+     * добавляем одну игрушку. Если ключи совпали, назначается id = максимально_знакомый_ключ+1
+     * @param t объект игрушки
+     * @return сообщаем,под каким id игрушка была записана
+     */
+    int addToy(Toy t){
+        int finalId = t.id;
         if(toys.containsKey(t.id)){
-            t.setId(maxKey++);
+            finalId = ++maxKey;
+            t.setId(finalId);
         }
         toys.put(t.id,t);
+        return finalId;
     }
     void removeToy(int idNum){
         toys.remove(idNum);

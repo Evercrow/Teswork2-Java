@@ -15,13 +15,14 @@ public class Toy implements Comparable<Toy>{
     String name;
     int quantity;
 
-    private float chance;
+    private double chance;
 
     public Toy(int id, double chanceWeight, String name, int quantity) {
         this.id = id;
         this.chanceWeight = chanceWeight;
         this.name = name;
         this.quantity = quantity;
+        this.chance = 0;
     }
 
     public Toy(double chanceWeight, String name, int quantity) {
@@ -38,14 +39,14 @@ public class Toy implements Comparable<Toy>{
 
     @Override
     public String toString() {
-        return  String.format("id:%d %s, вероятность %.1f, кол-во %d ",this.id, this.name,this.chanceWeight,this.quantity );
+        return  String.format("id:%d %s, вероятность %.1f, кол-во %d, категория редкости %.2f",this.id, this.name,this.chanceWeight,this.quantity,this.chance );
     }
 
-    public float getChance() {
+    public double getChance() {
         return chance;
     }
 
-    public void setChance(float chance) {
+    public void setChance(double chance) {
         this.chance = chance;
     }
 

@@ -1,3 +1,7 @@
+/**
+ * Класс участника, присваивающий "электронный талон" с автоинкрементом
+ * в поле id
+ */
 public class Participant implements Comparable<Participant>{
     String name;
     int id;
@@ -14,7 +18,7 @@ public class Participant implements Comparable<Participant>{
 
     @Override
     public String toString() {
-        return String.format("Участник %s,под номером %d: ", this.name, this.id);
+        return String.format("Участник %s, под номером %d", this.name, this.id);
     }
 
     @Override

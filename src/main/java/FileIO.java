@@ -2,6 +2,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class FileIO {
@@ -28,5 +29,14 @@ public class FileIO {
         }
 
     }
+
+     public static BufferedWriter raffleLog() throws IOException{
+
+             BufferedWriter bw = new BufferedWriter(
+                     new OutputStreamWriter(new FileOutputStream("./raffle_winners.txt",true), StandardCharsets.UTF_8)
+             );
+             bw.write(LocalDateTime.now().toString()+"\n");
+        return bw;
+     }
 
 }
