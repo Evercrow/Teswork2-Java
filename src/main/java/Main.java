@@ -5,11 +5,11 @@ public class Main {
     public static void main(String[] args) {
         //инициализация списка игрушек разными методами
         ToyList toys1 = new ToyList();
-        toys1.addToy(new Toy(25,"Плюшевый мишка"));
+        toys1.addToy(new Toy(25,"Плюшевый мишка",3));
         toys1.addToyList(List.of(
-                new Toy(5,"Велосипед",3),
-                new Toy(10,"Паззл",5),
-                new Toy(10,"Слинки",10)
+                new Toy(5,"Велосипед",1),
+                new Toy(10,"Паззл",2),
+                new Toy(10,"Слинки",2)
         ));
         System.out.println(toys1);
         //инициализация очереди участников
@@ -25,14 +25,11 @@ public class Main {
                 new Participant("Катя"),
                 new Participant("Оля")
         ));
-         /* //сам розыгрыш
+      //сам розыгрыш
+         //Вывод бросков для наглядности расчета можно сделать, раскомментировав 42-ю строчку в Raffle
         Raffle raf = new Raffle(pq,toys1);
         System.out.println(raf.currentToys.toString());
         raf.runRaffle();
-
-          */
-        //toys1.saveToFile();
-
 
         System.out.println("\nРозыгрыш с вероятностью проиграть\n");
         ParticipantQueue pqloss = new ParticipantQueue();
@@ -43,6 +40,9 @@ public class Main {
         raf2.setLossWeight(30);
         System.out.println(raf2.currentToys.toString());
         raf2.runRaffle();
+
+        //Можно записать финальное состояние призов для склада
+        toys1.saveToFile();
     }
 
 }
